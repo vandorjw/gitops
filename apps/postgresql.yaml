@@ -72,6 +72,7 @@ spec:
           persistentVolumeClaim:
             claimName: postgres-data-pvc
         - configMap:
+            name: pg-sample-config
           name: pg-sample-config
 ---
 kind: Service
