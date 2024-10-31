@@ -19,7 +19,7 @@ metadata:
   namespace: postgres
 data:
   postgresql.conf.sample: |-
-    huge_pages = off
+    huge_pages=off
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
