@@ -54,6 +54,7 @@ spec:
                   key: POSTGRES_PASSWORD
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
+              subPath: data
               name: postgres-data
       volumes:
         - name: postgres-data
