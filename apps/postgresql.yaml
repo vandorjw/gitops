@@ -12,6 +12,14 @@ metadata:
 data:
   POSTGRES_PASSWORD: YWRtaW4=
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-sample-config
+data:
+  postgresql.conf.sample: |-
+    huge_pages = off
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -56,10 +64,15 @@ spec:
             - mountPath: /var/lib/postgresql/data
               subPath: data
               name: postgres-data
+            - name: pg-sample-config
+              mountPath: /usr/share/postgresql/postgresql.conf.sample
+              subPath: postgresql.conf.sample
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
             claimName: postgres-data-pvc
+        - configMap:
+          name: pg-sample-config
 ---
 kind: Service
 apiVersion: v1
